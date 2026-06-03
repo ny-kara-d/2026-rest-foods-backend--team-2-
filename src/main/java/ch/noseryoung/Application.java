@@ -1,4 +1,4 @@
-package ch.noseryoung._026restfoodsbackendteam2;
+package ch.noseryoung;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
