@@ -14,12 +14,12 @@ public class ReservationController {
 
 
     @GetMapping("")
-    ResponseEntity<List<Reservation>> getAllReservations(){
+    ResponseEntity<List<Reservation>> getAllReservations(@RequestParam(required = false) String name){
         return ResponseEntity.status(200).body(reservationService.getAllReservations());
     }
 
     @GetMapping("/{reservation_id}")
-    ResponseEntity<Reservation> getReservationById(@RequestParam UUID reservation_id) throws Exception {
+    ResponseEntity<Reservation> getReservationById(@PathVariable UUID reservation_id) throws Exception {
         return ResponseEntity.status(200).body(reservationService.getReservationbyId(reservation_id));
     }
 
