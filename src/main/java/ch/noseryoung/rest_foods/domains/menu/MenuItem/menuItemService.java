@@ -4,6 +4,7 @@ package ch.noseryoung.rest_foods.domains.menu.MenuItem;
 import ch.noseryoung.rest_foods.domains.menu.menuCategory.MenuCategory;
 import ch.noseryoung.rest_foods.domains.menu.menuCategory.menuCategoryRepository;
 import lombok.extern.log4j.Log4j2;
+import org.jspecify.annotations.Nullable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,13 +25,34 @@ public class menuItemService {
     }
 
   public List<MenuItem> getAllMenuItems() {
-        return ch.noseryoung.rest_foods.domains.menu.MenuItem.menuItemRepository.findAll();
+        return this.menuItemRepository.findAll();
   }
 
   public Optional<MenuItem> getMenuItemById(UUID id) {
-        return ch.noseryoung.rest_foods.domains.menu.MenuItem.menuItemRepository.findById();
+        return this.menuItemRepository.findById(id);
   }
 
 
+  //controller ???
+    public Object findAll() {
+        this.menuItemRepository.findAll();
+        return null;
+    }
 
+    public Object save(MenuItem menuItem) {
+        this.menuItemRepository.save(menuItem);
+        return null;
+    }
+
+
+    public @Nullable MenuItem update(UUID menuItemId, MenuItem menuItem) {
+        this.menuItemRepository.save(menuItem);
+        return null;
+    }
+
+
+    public void delete(UUID menuItemId) {
+        this.menuItemRepository.deleteById(menuItemId);
+
+    }
 }
