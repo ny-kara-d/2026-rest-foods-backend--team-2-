@@ -37,7 +37,7 @@ public class ReservationController {
     }
 
     @DeleteMapping("{reservation_id}")
-    void deleteReservation(@PathVariable UUID reservation_id) throws Exception {
+    void deleteReservation(@PathVariable UUID reservation_id) {
         reservationService.deleteReservation(reservation_id);
     }
 
