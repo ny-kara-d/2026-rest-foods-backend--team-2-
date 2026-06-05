@@ -1,7 +1,6 @@
 package ch.noseryoung.rest_foods.domains.reservations.reservation;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,11 +11,14 @@ public class ReservationService {
     @Autowired
     ReservationRepository reservationRepository;
 
-    public List<Reservation> getAllReservations() {
-        return reservationRepository.findAll();
+    public List<Reservation> getAllReservations(String NameofPerson) {
+        if (NameofPerson == null || NameofPerson.isBlank()) {
+            return reservationRepository.findAll();
+        }
+        return reservationRepository.findReservationByNameofPerson(NameofPerson);
     }
 
-    public Reservation getReservationbyId(UUID reservation_id) throws Exception {
+    public Reservation getReservationById(UUID reservation_id) throws Exception {
         return reservationRepository.findById(reservation_id).orElseThrow(() -> new Exception("Reservation with this Id was not found"));
     }
 

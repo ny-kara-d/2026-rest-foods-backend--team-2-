@@ -1,7 +1,6 @@
 package ch.noseryoung.rest_foods.domains.reservations.reservation;
 
 import jakarta.validation.Valid;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,13 +16,13 @@ public class ReservationController {
 
 
     @GetMapping("")
-    ResponseEntity<List<Reservation>> getAllReservations(@RequestParam(required = false) String name) {
-        return ResponseEntity.status(200).body(reservationService.getAllReservations());
+    ResponseEntity<List<Reservation>> getAllReservations(@RequestParam(required = false) String NameofPerson) {
+        return ResponseEntity.status(200).body(reservationService.getAllReservations(NameofPerson));
     }
 
     @GetMapping("/{reservation_id}")
     ResponseEntity<Reservation> getReservationById(@PathVariable UUID reservation_id) throws Exception {
-        return ResponseEntity.status(200).body(reservationService.getReservationbyId(reservation_id));
+        return ResponseEntity.status(200).body(reservationService.getReservationById(reservation_id));
     }
 
     @PostMapping("/")
