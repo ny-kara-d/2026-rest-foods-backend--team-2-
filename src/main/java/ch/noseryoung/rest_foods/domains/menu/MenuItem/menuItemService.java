@@ -33,26 +33,19 @@ public class menuItemService {
   }
 
 
-  //controller ???
-    public Object findAll() {
-        this.menuItemRepository.findAll();
-        return null;
-    }
 
-    public Object save(MenuItem menuItem) {
-        this.menuItemRepository.save(menuItem);
-        return null;
+
+    public MenuItem save(MenuItem menuItem) {
+        return this.menuItemRepository.save(menuItem);
     }
 
 
     public @Nullable MenuItem update(UUID menuItemId, MenuItem menuItem) {
-        this.menuItemRepository.save(menuItem);
-        return null;
+        return this.menuItemRepository.save(menuItem);
     }
 
 
     public void delete(UUID menuItemId) {
         this.menuItemRepository.deleteById(menuItemId);
-
     }
 }

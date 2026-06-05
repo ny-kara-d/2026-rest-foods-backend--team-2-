@@ -27,15 +27,12 @@ public class menuCategoryController {
         this.menuItemService = menuItemService;
     }
 
-    @GetMapping("/{id}")
-    public Iterable<MenuCategory> getAll(@PathVariable UUID id) {
+    @GetMapping
+    public Iterable<MenuCategory> getAll() {
         return this.menuCategoryRepository.findAll();
     }
 
-    @GetMapping("/{id}")
-    public Iterable<MenuCategory> getAllByOrderByNameAsc(@PathVariable UUID id) {
-        return this.menuCategoryRepository.findAll();
-    }
+
 
     @PostMapping
     public MenuCategory create(@RequestBody MenuCategory menuCategory) {
@@ -64,7 +61,7 @@ public class menuCategoryController {
     //add MenuItem stuff because of 1:n relationship
     @GetMapping("/{MenuCategoryId}/menu-item")
     public List<MenuItem> getMenuItems(@PathVariable UUID MenuCategoryId) {
-        return (List<MenuItem>) ResponseEntity.ok(menuItemService.findAll());
+        return menuItemService.getAllMenuItems();
     }
     //.this instead? Idk
 
@@ -76,8 +73,8 @@ public class menuCategoryController {
 
 
     @PostMapping("/{MenuCategoryId}/menu-item")
-    public ResponseEntity<Boolean> createMenuItem(@PathVariable UUID MenuCategoryId, @RequestBody MenuItem menuItem) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(menuItemService.getAllMenuItems().add(menuItem));
+    public ResponseEntity<MenuItem> createMenuItem(@PathVariable UUID MenuCategoryId, @RequestBody MenuItem menuItem) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(menuItemService.save(menuItem));
     }
 
     //put
@@ -88,7 +85,7 @@ public class menuCategoryController {
 
     //delete
     @DeleteMapping("/{MenuCategoryId}/menu-item/{MenuItemId}")
-    public ResponseEntity<Boolean> deleteMenuItem(@PathVariable UUID MenuCategoryId, @PathVariable UUID MenuItemId) {
+    public ResponseEntity<Void> deleteMenuItem(@PathVariable UUID MenuCategoryId, @PathVariable UUID MenuItemId) {
         menuItemService.delete(MenuItemId);
         return ResponseEntity.noContent().build();
     }
