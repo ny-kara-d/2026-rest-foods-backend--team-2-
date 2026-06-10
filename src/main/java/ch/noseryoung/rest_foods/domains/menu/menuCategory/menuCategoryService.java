@@ -2,6 +2,7 @@ package ch.noseryoung.rest_foods.domains.menu.menuCategory;
 
 
 import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,12 +13,14 @@ import java.util.UUID;
 @Service
 public class menuCategoryService {
 
-    private final menuCategoryRepository menuCategoryRepository;
+//    private final menuCategoryRepository menuCategoryRepository;
+//
+//    public menuCategoryService(menuCategoryRepository menuCategoryRepository) {
+//        this.menuCategoryRepository = menuCategoryRepository;
+//    }
 
-    public menuCategoryService(menuCategoryRepository menuCategoryRepository) {
-        this.menuCategoryRepository = menuCategoryRepository;
-    }
-
+@Autowired
+private menuCategoryRepository menuCategoryRepository;
 
     public List<MenuCategory> getAllMenuCategories() {
         return this.menuCategoryRepository.findAll();

@@ -1,5 +1,6 @@
 package ch.noseryoung.rest_foods.domains.menu.MenuItem;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
@@ -12,3 +13,8 @@ import java.util.UUID;
 public interface menuItemRepository extends JpaRepository<MenuItem, UUID>, JpaSpecificationExecutor<MenuItem> {
     List<MenuItem> findByMenuCategory_MenuId(UUID menuCategoryId);
 }
+
+
+
+//@Autowired
+//menuItemRepository menuItemRepository;
