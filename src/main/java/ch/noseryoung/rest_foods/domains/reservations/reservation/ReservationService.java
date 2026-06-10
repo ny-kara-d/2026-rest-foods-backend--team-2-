@@ -1,5 +1,6 @@
 package ch.noseryoung.rest_foods.domains.reservations.reservation;
 
+import ch.noseryoung.rest_foods.Exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,8 +19,8 @@ public class ReservationService {
         return reservationRepository.findReservationByNameofPerson(NameofPerson);
     }
 
-    public Reservation getReservationById(UUID reservation_id) throws Exception {
-        return reservationRepository.findById(reservation_id).orElseThrow(() -> new Exception("Reservation with this Id was not found"));
+    public Reservation getReservationById(UUID reservation_id) throws ResourceNotFoundException {
+        return reservationRepository.findById(reservation_id).orElseThrow(() -> new ResourceNotFoundException("Reservation with this Id was not found"));
     }
 
     public Reservation createReservation(Reservation reservation) {
@@ -27,8 +28,8 @@ public class ReservationService {
     }
 
 
-    public Reservation updateReservation(UUID reservation_id, Reservation newReservation) throws Exception {
-        Reservation reservation = reservationRepository.findById(reservation_id).orElseThrow(() -> new Exception("Reservation with this Id was not found"));
+    public Reservation updateReservation(UUID reservation_id, Reservation newReservation) throws ResourceNotFoundException {
+        Reservation reservation = reservationRepository.findById(reservation_id).orElseThrow(() -> new ResourceNotFoundException("Reservation with this Id was not found"));
         reservation.setStartingTime(newReservation.getStartingTime());
         reservation.setEndingTime(newReservation.getEndingTime());
         reservation.setNameofPerson(newReservation.getNameofPerson());

@@ -1,5 +1,6 @@
 package ch.noseryoung.rest_foods.domains.reservations.table;
 
+import ch.noseryoung.rest_foods.Exceptions.ResourceNotFoundException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -34,7 +35,7 @@ public class RestaurantTableController {
     }
 
     @GetMapping("/{table_id}")
-    ResponseEntity<RestaurantTable> getTableById(@PathVariable UUID table_id) throws Exception {
+    ResponseEntity<RestaurantTable> getTableById(@PathVariable UUID table_id) throws ResourceNotFoundException {
         return ResponseEntity.status(200).body(restaurantTableService.getTableById(table_id));
     }
 
@@ -44,7 +45,7 @@ public class RestaurantTableController {
     }
 
     @PutMapping("{table_id}")
-    ResponseEntity<RestaurantTable> updateTable(@PathVariable UUID table_id, @Valid @RequestBody RestaurantTable newTable) throws Exception {
+    ResponseEntity<RestaurantTable> updateTable(@PathVariable UUID table_id, @Valid @RequestBody RestaurantTable newTable) throws ResourceNotFoundException {
         return ResponseEntity.status(200).body(restaurantTableService.updateTable(table_id, newTable));
     }
 
