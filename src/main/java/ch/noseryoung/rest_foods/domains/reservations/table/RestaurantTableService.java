@@ -1,5 +1,6 @@
 package ch.noseryoung.rest_foods.domains.reservations.table;
 
+import ch.noseryoung.rest_foods.Exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,16 +25,16 @@ public class RestaurantTableService {
         return restaurantTableRepository.findAvailableTables(start, end);
     }
 
-    public RestaurantTable getTableById(UUID table_id) throws Exception {
-        return restaurantTableRepository.findById(table_id).orElseThrow(() -> new Exception("Restaurant table with this Id was not found"));
+    public RestaurantTable getTableById(UUID table_id) throws ResourceNotFoundException {
+        return restaurantTableRepository.findById(table_id).orElseThrow(() -> new ResourceNotFoundException("Restaurant table with this Id was not found"));
     }
 
     public RestaurantTable createTable(RestaurantTable restaurantTable) {
         return restaurantTableRepository.save(restaurantTable);
     }
 
-    public RestaurantTable updateTable(UUID table_id, RestaurantTable newTable) throws Exception {
-        RestaurantTable restaurantTable = restaurantTableRepository.findById(table_id).orElseThrow(() -> new Exception("Restaurant table with this Id was not found"));
+    public RestaurantTable updateTable(UUID table_id, RestaurantTable newTable) throws ResourceNotFoundException {
+        RestaurantTable restaurantTable = restaurantTableRepository.findById(table_id).orElseThrow(() -> new ResourceNotFoundException("Restaurant table with this Id was not found"));
         restaurantTable.setChairs(newTable.getChairs());
         return restaurantTableRepository.save(restaurantTable);
     }
