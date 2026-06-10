@@ -27,7 +27,21 @@ public class menuCategoryService {
         return this.menuCategoryRepository.findById(id);
     }
 
+//couple of missing methods
+    public menuCategoryService save(MenuCategory menuCategory) {
+        save(menuCategory);
+        return this;
+    }
 
+    public menuCategoryService delete(UUID id) {
+        menuCategoryRepository.deleteById(id);
+        return this;
+    }
+
+    public menuCategoryService update(UUID id, MenuCategory menuCategory) {
+        menuCategory.setMenuId(id);
+        return save(menuCategory);
+    }
 
 
 }

@@ -32,7 +32,10 @@ public class menuItemService {
         return this.menuItemRepository.findById(id);
   }
 
-
+  //something here query method
+  public List<MenuItem> getMenuItemsByCategory(UUID menuCategoryId) {
+      return menuItemRepository.findByMenuCategory_MenuId(menuCategoryId);
+  }
 
 
     public MenuItem save(MenuItem menuItem) {

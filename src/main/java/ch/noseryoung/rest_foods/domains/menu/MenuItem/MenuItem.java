@@ -1,6 +1,8 @@
 package ch.noseryoung.rest_foods.domains.menu.MenuItem;
 
 
+import ch.noseryoung.rest_foods.domains.menu.menuCategory.MenuCategory;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -54,5 +56,10 @@ public class MenuItem {
     @NotBlank
     @Column
     private String fish2;
+
+    @JsonBackReference
+    @ManyToOne
+    @JoinColumn(name = "menu_category_id", nullable = false)
+    private MenuCategory menuCategory;
 
 }

@@ -61,7 +61,7 @@ public class menuCategoryController {
     //add MenuItem stuff because of 1:n relationship
     @GetMapping("/{MenuCategoryId}/menu-item")
     public List<MenuItem> getMenuItems(@PathVariable UUID MenuCategoryId) {
-        return menuItemService.getAllMenuItems();
+        return menuItemService.getMenuItemsByCategory(MenuCategoryId);
     }
     //.this instead? Idk
 
