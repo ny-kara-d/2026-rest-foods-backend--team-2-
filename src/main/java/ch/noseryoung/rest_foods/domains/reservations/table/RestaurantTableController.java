@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -23,7 +25,11 @@ public class RestaurantTableController {
     RestaurantTableService restaurantTableService;
 
     @GetMapping("")
-    ResponseEntity<List<RestaurantTable>> getAllTables() {
+    ResponseEntity<List<RestaurantTable>> getAllTables(@RequestParam(required = false) LocalDateTime start, @RequestParam(required = false) LocalDateTime end) {
+        if (start != null && end != null) {
+            return ResponseEntity.status(200).body(restaurantTableService.getAvailableTables(start, end));
+        }
+
         return ResponseEntity.status(200).body(restaurantTableService.getAllTables());
     }
 
