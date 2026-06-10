@@ -13,11 +13,6 @@ import java.util.UUID;
 @Service
 public class menuCategoryService {
 
-//    private final menuCategoryRepository menuCategoryRepository;
-//
-//    public menuCategoryService(menuCategoryRepository menuCategoryRepository) {
-//        this.menuCategoryRepository = menuCategoryRepository;
-//    }
 
 @Autowired
 private menuCategoryRepository menuCategoryRepository;
@@ -32,12 +27,13 @@ private menuCategoryRepository menuCategoryRepository;
 
 //couple of missing methods
     public menuCategoryService save(MenuCategory menuCategory) {
-        save(menuCategory);
+        menuCategoryRepository.save(menuCategory);
         return this;
     }
+//errors above and on line 46 47
 
-    public menuCategoryService delete(UUID id) {
-        menuCategoryRepository.deleteById(id);
+    public menuCategoryService delete(MenuCategory id) {
+        menuCategoryRepository.deleteById(id.getMenuId());
         return this;
     }
 

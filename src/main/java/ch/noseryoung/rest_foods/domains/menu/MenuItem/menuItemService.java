@@ -15,17 +15,7 @@ import java.util.UUID;
 
 @Log4j2
 @Service
-@Component
 public class menuItemService {
-
-    //Because of 1:m relationship, add stuff from menuCategory
-//    private final menuItemRepository menuItemRepository;
-//    private final menuCategoryRepository menuCategoryRepository;
-
-//    public menuItemService(menuItemRepository menuItemRepository, menuCategoryRepository menuCategoryRepository) {
-//        this.menuItemRepository = menuItemRepository;
-//        this.menuCategoryRepository = menuCategoryRepository;
-//    }
 
 
     @Autowired
@@ -43,7 +33,7 @@ public class menuItemService {
         return this.menuItemRepository.findById(id);
   }
 
-  //something here query method
+
   public List<MenuItem> getMenuItemsByCategory(UUID menuCategoryId) {
       return menuItemRepository.findByMenuCategory_MenuId(menuCategoryId);
   }

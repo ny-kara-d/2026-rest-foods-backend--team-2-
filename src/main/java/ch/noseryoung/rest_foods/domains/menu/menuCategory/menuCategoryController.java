@@ -27,21 +27,25 @@ public class menuCategoryController {
         this.menuItemService = menuItemService;
     }
 
+
+
+
+
     @GetMapping
     public Iterable<MenuCategory> getAll() {
-        return this.menuCategoryRepository.findAll();
+        return this.menuCategoryService.getAllMenuCategories();
     }
 
 
 
     @PostMapping
-    public MenuCategory create(@RequestBody MenuCategory menuCategory) {
-        return this.menuCategoryRepository.save(menuCategory);
+    public menuCategoryService create(@RequestBody MenuCategory menuCategory) {
+        return this.menuCategoryService.save(menuCategory);
     }
 
     @PutMapping("/{id}")
-    public MenuCategory update(@PathVariable UUID id, @RequestBody MenuCategory menuCategory) {
-        return this.menuCategoryRepository.save(menuCategory);
+    public menuCategoryService update(@PathVariable UUID id, @RequestBody MenuCategory menuCategory) {
+        return this.menuCategoryService.save(menuCategory);
     }
 
 
@@ -49,7 +53,7 @@ public class menuCategoryController {
 
     @DeleteMapping
     public void delete(@RequestBody MenuCategory menuCategory) {
-        this.menuCategoryRepository.delete(menuCategory);
+        this.menuCategoryService.delete(menuCategory);
     }
 
 
