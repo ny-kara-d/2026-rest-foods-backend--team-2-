@@ -25,7 +25,6 @@ public class RestaurantTable {
     @GeneratedValue(strategy = GenerationType.UUID)
     UUID TableId;
 
-    @NotBlank(message = "Can't be blank")
     @NotNull(message = "Can't be null")
     @Min(value = 2, message = "A table has to have at least 2 Chairs")
     int Chairs;
