@@ -17,23 +17,23 @@ public class menuCategoryService {
 
 
 @Autowired
-private menuCategoryRepository menuCategoryRepository;
+menuCategoryRepository menuCategoryRepository;
 
-//done
+
     public List<MenuCategory> getAllMenuCategories() {
         return menuCategoryRepository.findAll();
     }
 
 
-//done
-    public @Nullable MenuCategory getMenuCategoryById(UUID menuId) throws ResourceNotFoundException {
+
+    public MenuCategory getMenuCategoryById(@Nullable UUID menuId) throws ResourceNotFoundException {
         return menuCategoryRepository.findById(menuId).orElseThrow(() -> new ResourceNotFoundException("A Menu-category with this Id was not found"));
     }
-//done
-    public @Nullable MenuCategory createMenuCategory(MenuCategory menuCategory) {
+
+    public MenuCategory createMenuCategory(@Nullable MenuCategory menuCategory) {
         return menuCategoryRepository.save(menuCategory);
     }
-//done
+
     public MenuCategory updateMenuCategory(
             @Nullable UUID menuId, MenuCategory newCategory
     ) throws ResourceNotFoundException {
@@ -45,7 +45,7 @@ private menuCategoryRepository menuCategoryRepository;
         return menuCategoryRepository.save(menuCategory);
     }
 
-    //done
+
     public void deleteMenuCategory(UUID menuId) {
         menuCategoryRepository.deleteById(menuId);
     }
