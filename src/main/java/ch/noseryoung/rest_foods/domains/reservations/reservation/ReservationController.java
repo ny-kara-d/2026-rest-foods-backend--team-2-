@@ -26,7 +26,7 @@ public class ReservationController {
         return ResponseEntity.status(200).body(reservationService.getReservationById(reservation_id));
     }
 
-    @PostMapping("/")
+    @PostMapping
     ResponseEntity<Reservation> createReservation(@Valid @RequestBody Reservation reservation) {
         return ResponseEntity.status(201).body(reservationService.createReservation(reservation));
     }
