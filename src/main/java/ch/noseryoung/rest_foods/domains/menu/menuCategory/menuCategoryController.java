@@ -33,20 +33,20 @@ public class menuCategoryController {
 
     @GetMapping("/{menu_id}")
     ResponseEntity<MenuCategory> getMenuCategoryById(@PathVariable UUID menuId) {
-        return ResponseEntity.status(200).body(menuCategoryService.getMenuCategoryById());
+        return ResponseEntity.status(200).body(menuCategoryService.getMenuCategoryById(menuId));
     }
 
 
 
     @PostMapping("/")
     ResponseEntity<MenuCategory> createMenuCategory(@RequestBody MenuCategory menuCategory) {
-        return ResponseEntity.status(201).body(menuCategoryService.createMenuCategory());
+        return ResponseEntity.status(201).body(menuCategoryService.createMenuCategory(menuCategory));
     }
 
 
     @PutMapping("/{menu_id}")
     ResponseEntity<MenuCategory> updateMenuCategory(@PathVariable UUID menuId, @RequestBody MenuCategory menuCategory) {
-        return ResponseEntity.status(200).body(menuCategoryService.updateMenuCategory());
+        return ResponseEntity.status(200).body(menuCategoryService.updateMenuCategory(menuId, menuCategory));
     }
 
 
