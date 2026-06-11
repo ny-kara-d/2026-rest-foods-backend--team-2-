@@ -27,35 +27,23 @@ public class MenuItem {
 
     @NotBlank
     @Column
-    private String chefsChoice1;
+    private boolean chefsChoice;
+
 
     @NotBlank
     @Column
-    private String chefsChoice2;
+    private boolean vegetarian;
+
 
     @NotBlank
     @Column
-    private String vegetarian1;
+    private boolean meat;
+
 
     @NotBlank
     @Column
-    private String vegetarian2;
+    private boolean fish;
 
-    @NotBlank
-    @Column
-    private String meat1;
-
-    @NotBlank
-    @Column
-    private String meat2;
-
-    @NotBlank
-    @Column
-    private String fish1;
-
-    @NotBlank
-    @Column
-    private String fish2;
 
     @JsonBackReference
     @ManyToOne
