@@ -39,7 +39,7 @@ public class RestaurantTableController {
         return ResponseEntity.status(200).body(restaurantTableService.getTableById(table_id));
     }
 
-    @PostMapping("/")
+    @PostMapping
     ResponseEntity<RestaurantTable> createTable(@Valid @RequestBody RestaurantTable restaurantTable) {
         return ResponseEntity.status(201).body(restaurantTableService.createTable(restaurantTable));
     }
