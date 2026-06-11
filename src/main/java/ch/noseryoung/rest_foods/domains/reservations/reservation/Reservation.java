@@ -21,20 +21,16 @@ public class Reservation {
     UUID ReservationId;
 
     @Future(message = "Date must be in the Future")
-    @NotBlank(message = "Can't be blank")
     @NotNull(message = "Can't be null")
     LocalDateTime StartingTime;
 
-    @Future
     @Future(message = "Date must be in the Future")
-    @NotBlank(message = "Can't be blank")
     @NotNull(message = "Can't be null")
     LocalDateTime EndingTime;
 
     @Positive(message = "Must be Positive")
     @Min(value = 1, message = "At least 1 Person is required")
     @Column(nullable = false)
-    @NotBlank(message = "Can't be blank")
     @NotNull(message = "Can't be null")
     int AmountOfPersons;
 
