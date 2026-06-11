@@ -35,18 +35,18 @@ public class menuItemService {
     private menuCategoryRepository menuCategoryRepository;
 
 
-  public List<MenuItem> getAllMenuItems() {
+    public List<MenuItem> getAllMenuItems() {
         return this.menuItemRepository.findAll();
-  }
+    }
 
-  public Optional<MenuItem> getMenuItemById(UUID id) {
+    public Optional<MenuItem> getMenuItemById(UUID id) {
         return this.menuItemRepository.findById(id);
-  }
+    }
 
-  //something here query method
-  public List<MenuItem> getMenuItemsByCategory(UUID menuCategoryId) {
-      return menuItemRepository.findByMenuCategory_MenuId(menuCategoryId);
-  }
+    //something here query method
+    public List<MenuItem> getMenuItemsByCategory(UUID menuCategoryId) {
+        return menuItemRepository.findByMenuCategory_MenuId(menuCategoryId);
+    }
 
 
     public MenuItem save(MenuItem menuItem) {

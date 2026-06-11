@@ -33,7 +33,6 @@ public class menuCategoryController {
     }
 
 
-
     @PostMapping
     public MenuCategory create(@RequestBody MenuCategory menuCategory) {
         return this.menuCategoryRepository.save(menuCategory);
@@ -45,17 +44,10 @@ public class menuCategoryController {
     }
 
 
-
-
     @DeleteMapping
     public void delete(@RequestBody MenuCategory menuCategory) {
         this.menuCategoryRepository.delete(menuCategory);
     }
-
-
-
-
-
 
 
     //add MenuItem stuff because of 1:n relationship
