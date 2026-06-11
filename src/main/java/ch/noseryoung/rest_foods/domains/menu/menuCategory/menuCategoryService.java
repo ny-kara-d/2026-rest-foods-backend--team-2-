@@ -14,8 +14,8 @@ import java.util.UUID;
 public class menuCategoryService {
 
 
-@Autowired
-private menuCategoryRepository menuCategoryRepository;
+    @Autowired
+    private menuCategoryRepository menuCategoryRepository;
 
     public List<MenuCategory> getAllMenuCategories() {
         return this.menuCategoryRepository.findAll();
@@ -25,7 +25,7 @@ private menuCategoryRepository menuCategoryRepository;
         return this.menuCategoryRepository.findById(id);
     }
 
-//couple of missing methods
+    //couple of missing methods
     public menuCategoryService save(MenuCategory menuCategory) {
         menuCategoryRepository.save(menuCategory);
         return this;
