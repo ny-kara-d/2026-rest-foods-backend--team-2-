@@ -11,7 +11,7 @@ import java.util.UUID;
 
 @Repository
 public interface menuItemRepository extends JpaRepository<MenuItem, UUID>, JpaSpecificationExecutor<MenuItem> {
-    List<MenuItem> findByMenuCategory_MenuId(UUID menuCategoryId);
+//    List<MenuItem> findByMenuCategory_MenuId(UUID menuCategoryId);
 }
 
 
