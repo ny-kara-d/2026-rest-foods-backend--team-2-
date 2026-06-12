@@ -48,6 +48,9 @@ public class ReservationService {
     }
 
     public void deleteReservation(UUID reservationId) {
+        if (!reservationRepository.existsById(reservationId)) {
+            throw new ResourceNotFoundException("Reservation with this Id was not found");
+        }
         reservationRepository.deleteById(reservationId);
     }
 

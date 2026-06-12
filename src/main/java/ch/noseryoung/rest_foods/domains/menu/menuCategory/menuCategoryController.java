@@ -1,8 +1,8 @@
 package ch.noseryoung.rest_foods.domains.menu.menuCategory;
 
-
 import ch.noseryoung.rest_foods.domains.menu.MenuItem.MenuItem;
 import ch.noseryoung.rest_foods.domains.menu.MenuItem.menuItemService;
+import jakarta.validation.Valid;
 import lombok.extern.log4j.Log4j2;
 import org.jspecify.annotations.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,69 +17,59 @@ import java.util.UUID;
 @RequestMapping("/menu_category")
 public class menuCategoryController {
 
-
     @Autowired
     menuCategoryService menuCategoryService;
 
     @Autowired
     menuItemService menuItemService;
 
-
     @GetMapping
-    ResponseEntity<List<MenuCategory>> getAllMenuCategories(@RequestParam(required = false) String menuId) {
+    ResponseEntity<List<MenuCategory>> getAllMenuCategories() {
         return ResponseEntity.status(200).body(menuCategoryService.getAllMenuCategories());
     }
 
-    @GetMapping("/{menu_id}")
+    @GetMapping("/{menuId}")
     ResponseEntity<MenuCategory> getMenuCategoryById(@PathVariable UUID menuId) {
         return ResponseEntity.status(200).body(menuCategoryService.getMenuCategoryById(menuId));
     }
 
-
     @PostMapping("/")
-    ResponseEntity<MenuCategory> createMenuCategory(@RequestBody MenuCategory menuCategory) {
+    ResponseEntity<MenuCategory> createMenuCategory(@Valid @RequestBody MenuCategory menuCategory) {
         return ResponseEntity.status(201).body(menuCategoryService.createMenuCategory(menuCategory));
     }
 
-
-    @PutMapping("/{menu_id}")
-    ResponseEntity<MenuCategory> updateMenuCategory(@PathVariable UUID menuId, @RequestBody MenuCategory menuCategory) {
+    @PutMapping("/{menuId}")
+    ResponseEntity<MenuCategory> updateMenuCategory(@PathVariable UUID menuId, @Valid @RequestBody MenuCategory menuCategory) {
         return ResponseEntity.status(200).body(menuCategoryService.updateMenuCategory(menuId, menuCategory));
     }
 
-
-    @DeleteMapping
+    @DeleteMapping("/{menuId}")
     void deleteMenu(@PathVariable UUID menuId) {
         menuCategoryService.deleteMenuCategory(menuId);
     }
 
-
-    @GetMapping("/{MenuCategoryId}/menu-item")
-    ResponseEntity<List<MenuItem>> getAllMenuItems(@PathVariable UUID MenuCategoryId) {
-        return ResponseEntity.status(200).body(menuItemService.getAllMenuItems());
+    @GetMapping("/{menuCategoryId}/menu-item")
+    ResponseEntity<List<MenuItem>> getAllMenuItems(@PathVariable UUID menuCategoryId) {
+        return ResponseEntity.status(200).body(menuItemService.getAllMenuItems(menuCategoryId));
     }
 
-    @GetMapping("/{MenuCategoryId}/menu-item/{MenuItemId}")
-    ResponseEntity<@Nullable MenuItem> getMenuItemById(@PathVariable UUID MenuItemId, @PathVariable String MenuCategoryId) {
-        return ResponseEntity.status(200).body(menuItemService.getMenuItemById(MenuItemId));
+    @GetMapping("/{menuCategoryId}/menu-item/{menuItemId}")
+    ResponseEntity<@Nullable MenuItem> getMenuItemById(@PathVariable UUID menuCategoryId, @PathVariable UUID menuItemId) {
+        return ResponseEntity.status(200).body(menuItemService.getMenuItemById(menuItemId));
     }
 
-
-    @PostMapping("/{MenuCategoryId}/menu-item")
-    ResponseEntity<MenuItem> createMenuItem(@PathVariable UUID MenuCategoryId, @RequestBody MenuItem menuItem) {
-        return ResponseEntity.status(201).body(menuItemService.createMenuItem(menuItem));
+    @PostMapping("/{menuCategoryId}/menu-item")
+    ResponseEntity<MenuItem> createMenuItem(@PathVariable UUID menuCategoryId, @RequestBody MenuItem menuItem) {
+        return ResponseEntity.status(201).body(menuItemService.createMenuItem(menuCategoryId, menuItem));
     }
 
-
-    @PutMapping("/{MenuCategoryId}/menu-item/{MenuItemId}")
-    public ResponseEntity<MenuItem> updateMenuItem(@PathVariable UUID MenuCategoryId, @RequestBody MenuItem menuItem, @PathVariable UUID MenuItemId) {
-        return ResponseEntity.status(200).body(menuItemService.updateMenuItem(MenuItemId, menuItem));
+    @PutMapping("/{menuCategoryId}/menu-item/{menuItemId}")
+    ResponseEntity<MenuItem> updateMenuItem(@PathVariable UUID menuCategoryId, @PathVariable UUID menuItemId, @RequestBody MenuItem menuItem) {
+        return ResponseEntity.status(200).body(menuItemService.updateMenuItem(menuCategoryId, menuItemId, menuItem));
     }
 
-
-    @DeleteMapping("/{MenuCategoryId}/menu-item/{MenuItemId}")
-    void deleteMenuItem(@PathVariable UUID MenuCategoryId, @PathVariable UUID MenuItemId) {
-        menuItemService.deleteMenuItem(MenuItemId);
+    @DeleteMapping("/{menuCategoryId}/menu-item/{menuItemId}")
+    void deleteMenuItem(@PathVariable UUID menuCategoryId, @PathVariable UUID menuItemId) {
+        menuItemService.deleteMenuItem(menuItemId);
     }
-
 }
