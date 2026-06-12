@@ -57,6 +57,7 @@ public class menuItemService {
         }
 
         MenuItem menuItem = getMenuItemById(menuCategoryId, menuItemId);
+        menuItem.setName(newItem.getName());
         menuItem.setChefsChoice(newItem.isChefsChoice());
         menuItem.setVegetarian(newItem.isVegetarian());
         menuItem.setFish(newItem.isFish());
