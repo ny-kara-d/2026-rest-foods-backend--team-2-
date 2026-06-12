@@ -15,6 +15,5 @@ public interface menuItemRepository extends JpaRepository<MenuItem, UUID>, JpaSp
 }
 
 
-
 //@Autowired
 //menuItemRepository menuItemRepository;

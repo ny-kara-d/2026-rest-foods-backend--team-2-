@@ -18,7 +18,6 @@ import java.util.UUID;
 public class menuCategoryController {
 
 
-
     @Autowired
     menuCategoryService menuCategoryService;
 
@@ -37,7 +36,6 @@ public class menuCategoryController {
     }
 
 
-
     @PostMapping("/")
     ResponseEntity<MenuCategory> createMenuCategory(@RequestBody MenuCategory menuCategory) {
         return ResponseEntity.status(201).body(menuCategoryService.createMenuCategory(menuCategory));
@@ -50,19 +48,10 @@ public class menuCategoryController {
     }
 
 
-
-
     @DeleteMapping
     void deleteMenu(@PathVariable UUID menuId) {
         menuCategoryService.deleteMenuCategory(menuId);
     }
-
-
-
-
-
-
-
 
 
     @GetMapping("/{MenuCategoryId}/menu-item")
@@ -74,8 +63,6 @@ public class menuCategoryController {
     ResponseEntity<@Nullable MenuItem> getMenuItemById(@PathVariable UUID MenuItemId, @PathVariable String MenuCategoryId) {
         return ResponseEntity.status(200).body(menuItemService.getMenuItemById(MenuItemId));
     }
-
-
 
 
     @PostMapping("/{MenuCategoryId}/menu-item")

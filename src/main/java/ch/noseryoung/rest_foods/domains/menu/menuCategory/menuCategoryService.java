@@ -16,14 +16,13 @@ import java.util.UUID;
 public class menuCategoryService {
 
 
-@Autowired
-menuCategoryRepository menuCategoryRepository;
+    @Autowired
+    menuCategoryRepository menuCategoryRepository;
 
 
     public List<MenuCategory> getAllMenuCategories() {
         return menuCategoryRepository.findAll();
     }
-
 
 
     public MenuCategory getMenuCategoryById(@Nullable UUID menuId) throws ResourceNotFoundException {

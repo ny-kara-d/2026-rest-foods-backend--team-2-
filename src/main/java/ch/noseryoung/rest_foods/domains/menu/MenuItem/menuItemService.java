@@ -20,7 +20,6 @@ import java.util.UUID;
 public class menuItemService {
 
 
-
     @Autowired
     private menuItemRepository menuItemRepository;
 
@@ -28,14 +27,13 @@ public class menuItemService {
     private menuCategoryRepository menuCategoryRepository;
 
 
-  public List<MenuItem> getAllMenuItems() {
+    public List<MenuItem> getAllMenuItems() {
         return menuItemRepository.findAll();
-  }
+    }
 
-  public @Nullable MenuItem getMenuItemById(UUID item_id) throws ResourceNotFoundException {
+    public @Nullable MenuItem getMenuItemById(UUID item_id) throws ResourceNotFoundException {
         return menuItemRepository.findById(item_id).orElseThrow(() -> new ResourceNotFoundException("Menu-category with this Id was not found"));
-  }
-
+    }
 
 
     public void delete(UUID menuItemId) {
@@ -44,21 +42,21 @@ public class menuItemService {
 
 
     public MenuItem createMenuItem(@Nullable MenuItem menuItem) {
-      return menuItemRepository.save(menuItem);
+        return menuItemRepository.save(menuItem);
     }
 
     public MenuItem updateMenuItem(UUID menuItemId, MenuItem newItem) throws ResourceNotFoundException {
-      MenuItem menuItem = menuItemRepository.findById(menuItemId)
-              .orElseThrow(()-> new ResourceNotFoundException("Menu-item with this Id was not found"));
-      menuItem.setChefsChoice(newItem.isChefsChoice());
-      menuItem.setVegetarian(newItem.isVegetarian());
-      menuItem.setFish(newItem.isFish());
-      menuItem.setMeat(newItem.isMeat());
-      return menuItemRepository.save(menuItem);
+        MenuItem menuItem = menuItemRepository.findById(menuItemId)
+                .orElseThrow(() -> new ResourceNotFoundException("Menu-item with this Id was not found"));
+        menuItem.setChefsChoice(newItem.isChefsChoice());
+        menuItem.setVegetarian(newItem.isVegetarian());
+        menuItem.setFish(newItem.isFish());
+        menuItem.setMeat(newItem.isMeat());
+        return menuItemRepository.save(menuItem);
     }
 
 
     public void deleteMenuItem(UUID menuItemId) {
-      menuItemRepository.deleteById(menuItemId);
+        menuItemRepository.deleteById(menuItemId);
     }
 }
