@@ -50,8 +50,9 @@ public class RestaurantTableController {
     }
 
     @DeleteMapping("{table_id}")
-    void deleteTable(@PathVariable UUID table_id) {
+    ResponseEntity<Void> deleteTable(@PathVariable UUID table_id) {
         restaurantTableService.deleteTable(table_id);
+        return ResponseEntity.status(204).build();
     }
 
 
