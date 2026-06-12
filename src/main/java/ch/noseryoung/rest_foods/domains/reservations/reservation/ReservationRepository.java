@@ -12,14 +12,14 @@ import java.util.UUID;
 @Repository
 public interface ReservationRepository extends JpaRepository<Reservation, UUID> {
 
-    @Query("SELECT r FROM Reservation r WHERE LOWER(r.NameofPerson) LIKE LOWER(CONCAT('%', :NameofPerson, '%'))")
-    List<Reservation> findReservationByNameofPerson(@Param("NameofPerson") String NameofPerson);
+    @Query("SELECT r FROM Reservation r WHERE LOWER(r.nameofPerson) LIKE LOWER(CONCAT('%', :nameofPerson, '%'))")
+    List<Reservation> findReservationByNameofPerson(@Param("nameofPerson") String nameofPerson);
 
     @Query("""
             SELECT COUNT(r) > 0 FROM Reservation r
-            WHERE r.restaurantTable.TableId = :tableId
-            AND r.StartingTime < :end
-            AND r.EndingTime > :start
+            WHERE r.restaurantTable.tableId = :tableId
+            AND r.startingTime < :end
+            AND r.endingTime > :start
             """)
     boolean existsOverlappingReservation(
             @Param("tableId") UUID tableId,
@@ -29,10 +29,10 @@ public interface ReservationRepository extends JpaRepository<Reservation, UUID> 
 
     @Query("""
             SELECT COUNT(r) > 0 FROM Reservation r
-            WHERE r.restaurantTable.TableId = :tableId
-            AND r.ReservationId <> :reservationId
-            AND r.StartingTime < :end
-            AND r.EndingTime > :start
+            WHERE r.restaurantTable.tableId = :tableId
+            AND r.reservationId <> :reservationId
+            AND r.startingTime < :end
+            AND r.endingTime > :start
             """)
     boolean existsOverlappingReservationExcludingReservation(
             @Param("tableId") UUID tableId,

@@ -16,8 +16,8 @@ public interface RestaurantTableRepository extends JpaRepository<RestaurantTable
             WHERE NOT EXISTS (
                 SELECT r FROM Reservation r
                 WHERE r.restaurantTable = t
-                AND r.StartingTime < :end
-                AND r.EndingTime > :start
+                AND r.startingTime < :end
+                AND r.endingTime > :start
             )
             """)
     List<RestaurantTable> findAvailableTables(@Param("start") LocalDateTime start, @Param("end") LocalDateTime end);

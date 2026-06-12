@@ -17,15 +17,15 @@ public class ReservationService {
     @Autowired
     RestaurantTableRepository restaurantTableRepository;
 
-    public List<Reservation> getAllReservations(String NameofPerson) {
-        if (NameofPerson == null || NameofPerson.isBlank()) {
+    public List<Reservation> getAllReservations(String nameofPerson) {
+        if (nameofPerson == null || nameofPerson.isBlank()) {
             return reservationRepository.findAll();
         }
-        return reservationRepository.findReservationByNameofPerson(NameofPerson);
+        return reservationRepository.findReservationByNameofPerson(nameofPerson);
     }
 
-    public Reservation getReservationById(UUID reservation_id) throws ResourceNotFoundException {
-        return reservationRepository.findById(reservation_id).orElseThrow(() -> new ResourceNotFoundException("Reservation with this Id was not found"));
+    public Reservation getReservationById(UUID reservationId) throws ResourceNotFoundException {
+        return reservationRepository.findById(reservationId).orElseThrow(() -> new ResourceNotFoundException("Reservation with this Id was not found"));
     }
 
     public Reservation createReservation(Reservation reservation) throws ResourceNotFoundException {
@@ -35,9 +35,9 @@ public class ReservationService {
     }
 
 
-    public Reservation updateReservation(UUID reservation_id, Reservation newReservation) throws ResourceNotFoundException {
-        Reservation reservation = reservationRepository.findById(reservation_id).orElseThrow(() -> new ResourceNotFoundException("Reservation with this Id was not found"));
-        RestaurantTable table = validateReservation(newReservation, reservation_id);
+    public Reservation updateReservation(UUID reservationId, Reservation newReservation) throws ResourceNotFoundException {
+        Reservation reservation = reservationRepository.findById(reservationId).orElseThrow(() -> new ResourceNotFoundException("Reservation with this Id was not found"));
+        RestaurantTable table = validateReservation(newReservation, reservationId);
         reservation.setStartingTime(newReservation.getStartingTime());
         reservation.setEndingTime(newReservation.getEndingTime());
         reservation.setNameofPerson(newReservation.getNameofPerson());
@@ -47,8 +47,8 @@ public class ReservationService {
         return reservationRepository.save(reservation);
     }
 
-    public void deleteReservation(UUID reservation_id) {
-        reservationRepository.deleteById(reservation_id);
+    public void deleteReservation(UUID reservationId) {
+        reservationRepository.deleteById(reservationId);
     }
 
     private RestaurantTable validateReservation(Reservation reservation, UUID reservationIdToIgnore) throws ResourceNotFoundException {

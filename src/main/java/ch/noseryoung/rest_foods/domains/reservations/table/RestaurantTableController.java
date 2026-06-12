@@ -25,7 +25,7 @@ public class RestaurantTableController {
     @Autowired
     RestaurantTableService restaurantTableService;
 
-    @GetMapping("")
+    @GetMapping()
     ResponseEntity<List<RestaurantTable>> getAllTables(@RequestParam(required = false) LocalDateTime start, @RequestParam(required = false) LocalDateTime end) {
         if (start != null && end != null) {
             return ResponseEntity.status(200).body(restaurantTableService.getAvailableTables(start, end));
@@ -34,24 +34,24 @@ public class RestaurantTableController {
         return ResponseEntity.status(200).body(restaurantTableService.getAllTables());
     }
 
-    @GetMapping("/{table_id}")
-    ResponseEntity<RestaurantTable> getTableById(@PathVariable UUID table_id) throws ResourceNotFoundException {
-        return ResponseEntity.status(200).body(restaurantTableService.getTableById(table_id));
+    @GetMapping("/{tableId}")
+    ResponseEntity<RestaurantTable> getTableById(@PathVariable UUID tableId) throws ResourceNotFoundException {
+        return ResponseEntity.status(200).body(restaurantTableService.getTableById(tableId));
     }
 
-    @PostMapping
+    @PostMapping()
     ResponseEntity<RestaurantTable> createTable(@Valid @RequestBody RestaurantTable restaurantTable) {
         return ResponseEntity.status(201).body(restaurantTableService.createTable(restaurantTable));
     }
 
-    @PutMapping("{table_id}")
-    ResponseEntity<RestaurantTable> updateTable(@PathVariable UUID table_id, @Valid @RequestBody RestaurantTable newTable) throws ResourceNotFoundException {
-        return ResponseEntity.status(200).body(restaurantTableService.updateTable(table_id, newTable));
+    @PutMapping("/{tableId}")
+    ResponseEntity<RestaurantTable> updateTable(@PathVariable UUID tableId, @Valid @RequestBody RestaurantTable newTable) throws ResourceNotFoundException {
+        return ResponseEntity.status(200).body(restaurantTableService.updateTable(tableId, newTable));
     }
 
-    @DeleteMapping("{table_id}")
-    ResponseEntity<Void> deleteTable(@PathVariable UUID table_id) {
-        restaurantTableService.deleteTable(table_id);
+    @DeleteMapping("/{tableId}")
+    ResponseEntity<Void> deleteTable(@PathVariable UUID tableId) {
+        restaurantTableService.deleteTable(tableId);
         return ResponseEntity.status(204).build();
     }
 

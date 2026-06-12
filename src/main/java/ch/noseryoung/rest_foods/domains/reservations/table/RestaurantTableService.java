@@ -25,21 +25,21 @@ public class RestaurantTableService {
         return restaurantTableRepository.findAvailableTables(start, end);
     }
 
-    public RestaurantTable getTableById(UUID table_id) throws ResourceNotFoundException {
-        return restaurantTableRepository.findById(table_id).orElseThrow(() -> new ResourceNotFoundException("Restaurant table with this Id was not found"));
+    public RestaurantTable getTableById(UUID tableId) throws ResourceNotFoundException {
+        return restaurantTableRepository.findById(tableId).orElseThrow(() -> new ResourceNotFoundException("Restaurant table with this Id was not found"));
     }
 
     public RestaurantTable createTable(RestaurantTable restaurantTable) {
         return restaurantTableRepository.save(restaurantTable);
     }
 
-    public RestaurantTable updateTable(UUID table_id, RestaurantTable newTable) throws ResourceNotFoundException {
-        RestaurantTable restaurantTable = restaurantTableRepository.findById(table_id).orElseThrow(() -> new ResourceNotFoundException("Restaurant table with this Id was not found"));
+    public RestaurantTable updateTable(UUID tableId, RestaurantTable newTable) throws ResourceNotFoundException {
+        RestaurantTable restaurantTable = restaurantTableRepository.findById(tableId).orElseThrow(() -> new ResourceNotFoundException("Restaurant table with this Id was not found"));
         restaurantTable.setChairs(newTable.getChairs());
         return restaurantTableRepository.save(restaurantTable);
     }
 
-    public void deleteTable(UUID table_id) {
-        restaurantTableRepository.deleteById(table_id);
+    public void deleteTable(UUID tableId) {
+        restaurantTableRepository.deleteById(tableId);
     }
 }
