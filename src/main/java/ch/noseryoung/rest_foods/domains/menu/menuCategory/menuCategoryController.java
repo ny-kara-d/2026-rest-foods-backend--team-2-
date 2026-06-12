@@ -26,7 +26,7 @@ public class menuCategoryController {
 
 
     @GetMapping
-    ResponseEntity<List<MenuCategory>> getAllMenuCategories(@RequestParam(required = true) String menuId) {
+    ResponseEntity<List<MenuCategory>> getAllMenuCategories(@RequestParam(required = false) String menuId) {
         return ResponseEntity.status(200).body(menuCategoryService.getAllMenuCategories());
     }
 
@@ -55,7 +55,7 @@ public class menuCategoryController {
 
 
     @GetMapping("/{MenuCategoryId}/menu-item")
-    ResponseEntity<List<MenuItem>> getAllMenuItems(@RequestParam(required = true) UUID MenuCategoryId) {
+    ResponseEntity<List<MenuItem>> getAllMenuItems(@PathVariable UUID MenuCategoryId) {
         return ResponseEntity.status(200).body(menuItemService.getAllMenuItems());
     }
 
