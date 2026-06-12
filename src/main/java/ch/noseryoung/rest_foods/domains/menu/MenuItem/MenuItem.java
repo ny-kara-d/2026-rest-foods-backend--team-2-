@@ -5,7 +5,6 @@ import ch.noseryoung.rest_foods.domains.menu.menuCategory.MenuCategory;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,23 +24,16 @@ public class MenuItem {
     @JsonProperty("id")
     private UUID itemId;
 
-    @NotBlank
-    @Column
+    @Column(nullable = false)
     private boolean chefsChoice;
 
-
-    @NotBlank
-    @Column
+    @Column(nullable = false)
     private boolean vegetarian;
 
-
-    @NotBlank
-    @Column
+    @Column(nullable = false)
     private boolean meat;
 
-
-    @NotBlank
-    @Column
+    @Column(nullable = false)
     private boolean fish;
 
 

@@ -5,9 +5,6 @@ import ch.noseryoung.rest_foods.domains.menu.MenuItem.MenuItem;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
-
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -28,22 +25,6 @@ public class MenuCategory {
     @Column(name = "menu_id", nullable = false)
     @JsonProperty("id")
     private UUID menuId;
-
-    @NotBlank
-    @Column
-    private String chefsChoice;
-
-    @NotBlank
-    @Column
-    private String categoryVegetarian;
-
-    @NotBlank
-    @Column
-    private String categoryMeat;
-
-    @NotBlank
-    @Column
-    private String categoryFish;
 
     @JsonManagedReference
     @OneToMany(mappedBy = "menuCategory", cascade = CascadeType.ALL)
